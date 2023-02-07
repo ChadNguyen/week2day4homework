@@ -13,6 +13,7 @@ class SodaStore:
         self.total += quantity * deposit
         if brand in self.cart:
             self.cart[brand]['quantity'] += quantity
+            self.cart[brand]['deposit'] += quantity * 0.05
         else:
             self.cart[brand] = {
                 'quantity': quantity,
@@ -24,10 +25,11 @@ class SodaStore:
         self.total -= quantity * deposit
         if brand in self.cart:
             self.cart[brand]['quantity'] -= quantity
+            self.cart[brand]['deposit'] -= quantity * 0.05
         else:
             self.cart[brand] = {
-                'quantity': -quantity,
-                'deposit': deposit,
+                'quantity': - quantity,
+                'deposit': - quantity * 0.05,
             }
         self.show_list()
 
@@ -61,7 +63,7 @@ class SodaStore:
             elif user_choice == 'redeem':
                 item = input('which brand will you redeem? (CocaCola/Pepsi):  ').lower()
                 try:
-                    quantity = int(input('How many containers do you want to redeem?: '))
+                    quantity = (input('How many containers do you want to redeem?: '))
                     if quantity.isdigit():
                         quantity=float(quantity)
                 except:
@@ -78,6 +80,7 @@ class SodaStore:
             else:
                 print('Please Enter Valid Choice')
 SodaStore.driver()
+
 
     
                     
